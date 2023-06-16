@@ -13,13 +13,23 @@ let multiplyTwoNumbers = (a, b) => a * b; //dish2
 //res - from the backend
 //restructure the information so that backend understands
 app.get("/add", (req, res) => {
-    let sum = addTwoNumbers(5, 6);
-    res.status(200).send(sum);
+    // let sum = addTwoNumbers(5, 6);
+    let { a, b } = req.query;
+    a = parseInt(a);
+    b = parseInt(b);
+    let sum = addTwoNumbers(a, b);
+    res.status(200).send(sum.toString());
     //No point to write any code after this line. It will run through
 });
 app.get("/multiply", (req, res) => {
-    let product = addTwoNumbers(5, 6);
-    res.status(200).send(product);
+    // let product = addTwoNumbers(5, 6);
+    let { a, b } = req.query;
+    a = parseInt(a);
+    b = parseInt(b);
+    let product = addTwoNumbers(a, b);
+    if (product < 20) {
+        res.status(200).send(product.toString());
+    }
 });
 
 app.listen(8000, () => {
