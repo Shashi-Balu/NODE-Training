@@ -1,9 +1,20 @@
-const axios = require("axios");
+const express = require("express");
+const { getWeatherByAddress } = require("./weatherAPI");
 
-const geocodeAPI = "https://geocode.maps.co/search";
+const app = express();
+app.use(express.json());
 
-function getWeather(req, res) {
-    const { address } = req.body;
+app.post("/get-weather", async (req, res) => {
+    try {
+        let weatherData = await getWeatherByAddress(req.body.address);
+        return res.status(200).send(weatherData);
+    } catch (err) {
+        return res.status(500).send({ message: err.message });
+    }
+});
 
-    axios.get;
-}
+const PORT = 3000;
+
+app.listen(PORT, () => {
+    console.log("Server is listening", PORT);
+});
