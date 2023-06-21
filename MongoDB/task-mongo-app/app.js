@@ -17,13 +17,19 @@ app.post("/add-user", async (req, res) => {
         return res.status(201).send(user);
     } catch (err) {
         console.log(err);
+        return res.status(400).send({ message: err.message });
     }
 });
 
-app.get("/find-user", async (req, res) => {
-    const user = await User.findOne({ age: 21 });
-    console.log("User with age 21 found");
-    return res.status(200).send(user);
+app.get("/find-user/:userId", async (req, res) => {
+    try {
+        const user = await User.findOne({ _id: req.params.id });
+        console.log("User with age 21 found");
+        return res.status(200).send(user);
+    } catch (err) {
+        console.log(err);
+        return res.status(500).send({ message: err.message });
+    }
 });
 
 app.put("/user/:userId", async (req, res) => {
