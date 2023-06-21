@@ -1,6 +1,6 @@
 const { connect } = require("mongoose");
 
-const MONGO_DB_URL = "mongodb+srv://users:user1@cluster0.pkn90th.mongodb.net";
+const MONGO_DB_URL = `mongodb+srv://users:user1@cluster0.pkn90th.mongodb.net`;
 
 const DB_NAME = "LPU";
 
